@@ -68,6 +68,8 @@ const Icon = styled.div`
     }
 `
 
+
+
 const Product = ({ item }) => {
     const navigate = useNavigate();
     return (
