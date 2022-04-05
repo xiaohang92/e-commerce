@@ -41,6 +41,11 @@ const Button = styled.button`
     color: gray;
     cursor: pointer;
     font-weight: 600;
+
+    &:hover{
+    box-shadow: rgba(0, 0, 0, .5) 2px 8px 8px -5px;
+    transform: translate3d(0, -2px, 0);
+}
 `
 
 

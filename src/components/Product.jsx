@@ -75,7 +75,7 @@ const Product = ({ item }) => {
             <Circle />
             <Image src={item.img} />
             <Info>
-                <Icon>
+                <Icon onClick={() => navigate('/cart')}>
                     <ShoppingCartOutlined />
                 </Icon>
                 <Icon onClick={() => navigate('/products')}>

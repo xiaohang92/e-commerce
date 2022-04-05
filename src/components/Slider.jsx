@@ -30,6 +30,11 @@ const Arrow = styled.div`
     cursor: pointer;
     opacity: 0.5;
     z-index: 2;
+
+    &:hover{
+        background-color: #caebeb;
+        transform: scale(1.1);
+    }
 `
 
 const Wrapper = styled.div`
@@ -73,15 +78,23 @@ font-weight: 500;
 letter-spacing: 3px;
 `
 
-const Button = styled.h1`
+const Button = styled.button`
 padding: 10px;
 font-size: 20px;
 background-color: transparent;
+border: none;
+border-radius: 20px;
 cursor: pointer;
-`
 
+&:hover{
+    box-shadow: rgba(0, 0, 0, .5) 2px 8px 8px -5px;
+    transform: translate3d(0, 2px, 0);
+}
+`
+const delay = 5000;
 const Slider = () => {
     const [slideIndex, setSlideIndex] = useState(0);
+    const timeoutRef = React.useRef(null);
     const navigate = useNavigate();
     const handleClick = (direction) => {
 
@@ -91,6 +104,24 @@ const Slider = () => {
             setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0)
         }
     };
+
+    function resetTimeout() {
+        if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
+        }
+    }
+
+    React.useEffect(() => {
+        resetTimeout();
+        timeoutRef.current =
+            setTimeout(
+                () =>
+                    setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0),
+                delay
+            );
+
+        return () => { resetTimeout(); };
+    }, [slideIndex]);
 
     return (
         <Container>
